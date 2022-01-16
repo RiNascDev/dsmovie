@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig} from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import { Movie } from 'types/movie';
@@ -33,14 +33,18 @@ function FormCard ({movieId}:Props) {
             return alert("email inválido");
         }
 
-        const data = {
-            email: email,
-            movieId:movieId,
-            score: score
-        }
+        const config: AxiosRequestConfig = {
+            baseURL: BASE_URL,
+            method: 'PUT',
+            url: '/scores',
+            data: {
+                email: email,
+                movieId: movieId,
+                score: score
+            }
+}
 
-        axios.put(`${BASE_URL}/scores`, data)
-            .then(response => {
+        axios(config).then(response => {
                 //console.log(response.data);
                 navigate("/");
             });
