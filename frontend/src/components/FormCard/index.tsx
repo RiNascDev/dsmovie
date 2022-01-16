@@ -27,7 +27,7 @@ function FormCard ({movieId}:Props) {
         event.preventDefault();
 
         const email = (event.target as any).email.value;
-        const score = (event.target as any). score.value;
+        const score = (event.target as any).score.value;
 
         if (!validateEmail(email)){
             return alert("email inválido");
